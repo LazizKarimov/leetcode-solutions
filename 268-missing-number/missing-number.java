@@ -2,15 +2,11 @@ class Solution {
     public int missingNumber(int[] nums) {
         
         int i = 0;
-        int maxNum = nums[i];
         int sumNums = 0;
         int len = nums.length;
 
         while (i < len) {
             sumNums += nums[i];
-            if (nums[i] > maxNum) {
-                maxNum = nums[i];
-            }
             i++;
         }
 
@@ -19,7 +15,6 @@ class Solution {
             sumNums2 += j;
         }
 
-        return sumNums2 - sumNums;
-        
+        return sumNums2 - sumNums;   
     }
 }
