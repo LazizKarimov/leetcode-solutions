@@ -1,21 +1,26 @@
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
-        int length = numbers.length;
+        int leftPointer = 0;
+        int rightPointer = numbers.length - 1;
         int [] resIndxs = new int[2];
 
-        int i = 0;
-        while (i < length) {
-            int j = i + 1;
-            while (j < length) {
-                if (numbers[i] + numbers[j] == target){
-                    resIndxs[0] = i + 1;
-                    resIndxs[1] = j + 1;
-                    return resIndxs;
-                }
-                j++;
+        while (leftPointer < rightPointer) { 
+            int sum = numbers[leftPointer] + numbers[rightPointer];
+
+            if (sum == target) {
+                resIndxs[0] = leftPointer + 1;
+                resIndxs[1] = rightPointer + 1;
+                return resIndxs;
             }
-            i++;
+
+            if (sum < target) {
+                leftPointer++;
+            }
+            if (sum > target) {
+                rightPointer--;
+            }
         }
+
         return resIndxs;
     }
 }
