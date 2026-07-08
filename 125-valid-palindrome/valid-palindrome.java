@@ -1,39 +1,45 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        if(" ".equals(s)){
-            return true;
-        }
+        
+        char [] stringToCharArray = s.toCharArray();
 
         int i = 0;
-        char [] charArrayS = s.toCharArray();
-        String resultStr = "";
-        while (i < charArrayS.length) { 
-            if (Character.isDigit(charArrayS[i])){
-                resultStr += charArrayS[i];
-            }
-            if ('a' <= charArrayS[i] && charArrayS[i] <= 'z') {
-                resultStr += charArrayS[i];
-            }
-            if ('A' <= charArrayS[i] && charArrayS[i] <= 'Z'){
-                resultStr += Character.toLowerCase(charArrayS[i]);
-            }
-            i++;
-        }
+        int j = stringToCharArray.length - 1;
+        while (i < j) {
 
-        char [] isPal = resultStr.toCharArray();
-        int j = 0;
-        int k = isPal.length - 1;
+            if (stringToCharArray[i] >= 'a' && stringToCharArray[i] <= 'z' || 
+                stringToCharArray[i] >= 'A' && stringToCharArray[i] <= 'Z'||
+                stringToCharArray[i] >= '0' && stringToCharArray[i] <= '9') {
 
-        while (j < k) {
-            if (isPal[j] != isPal[k]){
-                return false;
+                    if (stringToCharArray[j] >= 'a' && stringToCharArray[j] <= 'z' || 
+                        stringToCharArray[j] >= 'A' && stringToCharArray[j] <= 'Z'||
+                        stringToCharArray[j] >= '0' && stringToCharArray[j] <= '9') {
+                        
+                            char left = stringToCharArray[i];
+                            char right = stringToCharArray[j];
+
+                            if (left >= 'A' && left <= 'Z') {
+                                left = (char)(left + 32);
+                                }
+                            if (right >= 'A' && right <= 'Z') {
+                                right = (char)(right + 32);
+                                }
+
+                            if (left == right) {
+                                i++;
+                                j--;
+                                } else {
+                                    return false;
+                                }
+                    } else {
+                        j--;
+                    }
+
+                } else {
+                i++; 
             }
-            j++;
-            k--;
+            
         }
-  
         return true;
-
-
     }
 }
